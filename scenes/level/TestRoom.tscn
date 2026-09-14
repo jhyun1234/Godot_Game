@@ -1,0 +1,301 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="PackedScene" path="res://assets/kaykit/dungeon/floor_tile_large.gltf" id="1_floor"]
+[ext_resource type="PackedScene" path="res://assets/kaykit/dungeon/wall.gltf" id="2_wall"]
+[ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="3_player"]
+[ext_resource type="PackedScene" path="res://scenes/level/OrePocket.tscn" id="4_block"]
+[ext_resource type="PackedScene" path="res://scenes/level/Lift.tscn" id="5_lift"]
+
+[sub_resource type="Environment" id="Environment_room"]
+background_mode = 1
+background_color = Color(0.02, 0.02, 0.03, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.1, 0.12, 0.2, 1)
+ambient_light_energy = 0.05
+tonemap_mode = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor_w"]
+size = Vector3(0.5, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor_e"]
+size = Vector3(16.5, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor_n"]
+size = Vector3(3, 1, 12.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor_s"]
+size = Vector3(3, 1, 4.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor_deep"]
+size = Vector3(12, 1, 12)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall_ns"]
+size = Vector3(22, 4, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall_ew"]
+size = Vector3(1, 4, 22)
+
+[node name="TestRoom" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_room")
+
+[node name="Tiles" type="Node3D" parent="."]
+
+[node name="Floor_-8_-8" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
+
+[node name="Floor_-8_-4" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -4)
+
+[node name="Floor_-8_0" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
+
+[node name="Floor_-8_8" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 8)
+
+[node name="Floor_-4_-8" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -8)
+
+[node name="Floor_-4_-4" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+
+[node name="Floor_-4_0" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="Floor_-4_4" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
+
+[node name="Floor_-4_8" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 8)
+
+[node name="Floor_0_-8" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+
+[node name="Floor_0_-4" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="Floor_0_0" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Floor_0_4" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="Floor_0_8" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="Floor_4_-8" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -8)
+
+[node name="Floor_4_-4" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
+
+[node name="Floor_4_0" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="Floor_4_4" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+
+[node name="Floor_4_8" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 8)
+
+[node name="Floor_8_-8" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -8)
+
+[node name="Floor_8_-4" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -4)
+
+[node name="Floor_8_0" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="Floor_8_4" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 4)
+
+[node name="Floor_8_8" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
+
+[node name="WallN_-8" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.05, -10.5)
+
+[node name="WallS_-8" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -8, 0.05, 10.5)
+
+[node name="WallE_-8" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 10.5, 0.05, -8)
+
+[node name="WallW_-8" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -10.5, 0.05, -8)
+
+[node name="WallN_-4" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.05, -10.5)
+
+[node name="WallS_-4" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -4, 0.05, 10.5)
+
+[node name="WallE_-4" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 10.5, 0.05, -4)
+
+[node name="WallW_-4" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -10.5, 0.05, -4)
+
+[node name="WallN_0" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -10.5)
+
+[node name="WallS_0" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0.05, 10.5)
+
+[node name="WallE_0" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 10.5, 0.05, 0)
+
+[node name="WallW_0" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -10.5, 0.05, 0)
+
+[node name="WallN_4" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.05, -10.5)
+
+[node name="WallS_4" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 4, 0.05, 10.5)
+
+[node name="WallE_4" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 10.5, 0.05, 4)
+
+[node name="WallW_4" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -10.5, 0.05, 4)
+
+[node name="WallN_8" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.05, -10.5)
+
+[node name="WallS_8" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 8, 0.05, 10.5)
+
+[node name="WallE_8" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 10.5, 0.05, 8)
+
+[node name="WallW_8" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -10.5, 0.05, 8)
+
+[node name="ShaftN_4" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -4, 2.0)
+
+[node name="ShaftS_4" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -8, -4, 6.0)
+
+[node name="ShaftE_4" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -6.0, -4, 4)
+
+[node name="ShaftW_4" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -10.0, -4, 4)
+
+[node name="ShaftN_8" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -8, 2.0)
+
+[node name="ShaftS_8" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -8, -8, 6.0)
+
+[node name="ShaftE_8" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -6.0, -8, 4)
+
+[node name="ShaftW_8" parent="Tiles" instance=ExtResource("2_wall")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -10.0, -8, 4)
+
+[node name="Deep_-12_0" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -8, 0)
+
+[node name="Deep_-12_4" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -8, 4)
+
+[node name="Deep_-12_8" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -8, 8)
+
+[node name="Deep_-8_0" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -8, 0)
+
+[node name="Deep_-8_4" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -8, 4)
+
+[node name="Deep_-8_8" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -8, 8)
+
+[node name="Deep_-4_0" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -8, 0)
+
+[node name="Deep_-4_4" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -8, 4)
+
+[node name="Deep_-4_8" parent="Tiles" instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -8, 8)
+
+[node name="Collision" type="StaticBody3D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="FloorW" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.75, -0.45, 0)
+shape = SubResource("BoxShape3D_floor_w")
+
+[node name="FloorE" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -0.45, 0)
+shape = SubResource("BoxShape3D_floor_e")
+
+[node name="FloorN" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -0.45, -3.75)
+shape = SubResource("BoxShape3D_floor_n")
+
+[node name="FloorS" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -0.45, 7.75)
+shape = SubResource("BoxShape3D_floor_s")
+
+[node name="FloorDeep" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -8.45, 4)
+shape = SubResource("BoxShape3D_floor_deep")
+
+[node name="WallBoxN" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05, -10.5)
+shape = SubResource("BoxShape3D_wall_ns")
+
+[node name="WallBoxS" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05, 10.5)
+shape = SubResource("BoxShape3D_wall_ns")
+
+[node name="WallBoxE" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 2.05, 0)
+shape = SubResource("BoxShape3D_wall_ew")
+
+[node name="WallBoxW" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 2.05, 0)
+shape = SubResource("BoxShape3D_wall_ew")
+
+[node name="Minables" type="Node3D" parent="."]
+
+[node name="Block_-4_-6" parent="Minables" instance=ExtResource("4_block")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.05, -6)
+
+[node name="Block_0_-6" parent="Minables" instance=ExtResource("4_block")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -6)
+
+[node name="Block_4_-6" parent="Minables" instance=ExtResource("4_block")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.05, -6)
+
+[node name="Block_-4_-9" parent="Minables" instance=ExtResource("4_block")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.05, -9)
+
+[node name="Block_0_-9" parent="Minables" instance=ExtResource("4_block")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -9)
+
+[node name="Block_4_-9" parent="Minables" instance=ExtResource("4_block")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.05, -9)
+
+[node name="Deep_-12" parent="Minables" instance=ExtResource("4_block")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -7.95, -1)
+
+[node name="Deep_-8" parent="Minables" instance=ExtResource("4_block")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -7.95, -1)
+
+[node name="Deep_-4" parent="Minables" instance=ExtResource("4_block")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -7.95, -1)
+
+[node name="Lift" parent="." instance=ExtResource("5_lift")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.05, 4)
+
+[node name="Player" parent="." instance=ExtResource("3_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 6)

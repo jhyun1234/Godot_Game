@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/Lift.gd" id="1_lift"]
+[ext_resource type="PackedScene" path="res://assets/generated/tunnel/lift_cage.gltf" id="2_mesh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_deck"]
+size = Vector3(4.4, 0.12, 4.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rail_z"]
+size = Vector3(4.4, 2.9, 0.12)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rail_x"]
+size = Vector3(0.12, 2.9, 4.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_roof"]
+size = Vector3(4.4, 0.12, 4.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gate"]
+size = Vector3(4.4, 2.9, 0.06)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_riders"]
+size = Vector3(4.2, 1.6, 4.2)
+
+[node name="Lift" type="AnimatableBody3D"]
+collision_layer = 1
+collision_mask = 0
+sync_to_physics = true
+script = ExtResource("1_lift")
+
+[node name="Mesh" parent="." instance=ExtResource("2_mesh")]
+
+[node name="Deck" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06, 0)
+shape = SubResource("BoxShape3D_deck")
+
+[node name="RailSouth" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45, 2.2)
+shape = SubResource("BoxShape3D_rail_z")
+
+[node name="RailEast" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2, 1.45, 0)
+shape = SubResource("BoxShape3D_rail_x")
+
+[node name="RailWest" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2, 1.45, 0)
+shape = SubResource("BoxShape3D_rail_x")
+
+[node name="Roof" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.06, 0)
+shape = SubResource("BoxShape3D_roof")
+
+[node name="Gate" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45, -2.2)
+shape = SubResource("BoxShape3D_gate")
+disabled = true
+
+[node name="Riders" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="Collider" type="CollisionShape3D" parent="Riders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("BoxShape3D_riders")

@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://bhju75orixvhj"]
+
+[ext_resource type="Script" uid="uid://7fym8y0ftlkw" path="res://scripts/Player.gd" id="1_player"]
+[ext_resource type="Script" uid="uid://b2utc01pxhm8b" path="res://scripts/Miner.gd" id="2_miner"]
+[ext_resource type="PackedScene" path="res://scenes/ui/OreHud.tscn" id="3_hud"]
+[ext_resource type="PackedScene" path="res://scenes/player/Pickaxe.tscn" id="4_pick"]
+[ext_resource type="PackedScene" path="res://scenes/ui/DangerHud.tscn" id="5_danger"]
+[ext_resource type="PackedScene" path="res://scenes/ui/DeathScreen.tscn" id="6_death"]
+[ext_resource type="Script" uid="uid://h8fapjkqqmrg" path="res://scripts/RepairHud.gd" id="7_repair"]
+[ext_resource type="Script" uid="uid://cyr7pciw0ybas" path="res://scripts/NoiseHud.gd" id="8_noise"]
+[ext_resource type="Script" uid="uid://b0u3ta7d1derr" path="res://scripts/DebugHud.gd" id="9_debug"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_body"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_magnet"]
+radius = 1.8
+
+[node name="Player" type="CharacterBody3D" unique_id=1932753401]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_player")
+
+[node name="Collider" type="CollisionShape3D" parent="." unique_id=1161871022]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_body")
+
+[node name="Head" type="Node3D" parent="." unique_id=943301155]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=434648757]
+current = true
+fov = 80.0
+
+[node name="Pickaxe" parent="Head/Camera3D" unique_id=1729183981 instance=ExtResource("4_pick")]
+
+[node name="Carry" type="Node3D" parent="Head/Camera3D" unique_id=1245617279]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, -0.45, -1)
+
+[node name="MineRay" type="RayCast3D" parent="Head/Camera3D" unique_id=120480288]
+target_position = Vector3(0, 0, -3)
+collision_mask = 4
+script = ExtResource("2_miner")
+
+[node name="Headlamp" type="SpotLight3D" parent="Head" unique_id=610044213]
+
+[node name="Magnet" type="Area3D" parent="." unique_id=1720223718]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="Collider" type="CollisionShape3D" parent="Magnet" unique_id=77485854]
+shape = SubResource("SphereShape3D_magnet")
+
+[node name="Hud" parent="." unique_id=440142308 instance=ExtResource("3_hud")]
+
+[node name="DangerHud" parent="." unique_id=1496591530 instance=ExtResource("5_danger")]
+
+[node name="DeathScreen" parent="." unique_id=54011897 instance=ExtResource("6_death")]
+
+[node name="RepairHud" type="CanvasLayer" parent="." unique_id=651460611]
+script = ExtResource("7_repair")
+
+[node name="NoiseHud" type="CanvasLayer" parent="." unique_id=1797099129]
+script = ExtResource("8_noise")
+
+[node name="DebugHud" type="CanvasLayer" parent="." unique_id=1917269465]
+script = ExtResource("9_debug")

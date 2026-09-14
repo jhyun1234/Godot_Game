@@ -1,0 +1,128 @@
+[gd_scene load_steps=16 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="2_player"]
+[ext_resource type="Script" path="res://scripts/PocketSpawner.gd" id="7_pockets"]
+[ext_resource type="PackedScene" path="res://assets/generated/tunnel/shaft_station.gltf" id="4_station"]
+[ext_resource type="PackedScene" path="res://assets/generated/tunnel/shaft_pit.gltf" id="5_pit"]
+[ext_resource type="PackedScene" path="res://scenes/level/Lift.tscn" id="6_lift"]
+[ext_resource type="Script" path="res://scripts/MineAssembler.gd" id="8_assembler"]
+
+[sub_resource type="Environment" id="Environment_tunnel"]
+background_mode = 1
+background_color = Color(0.02, 0.02, 0.03, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.1, 0.12, 0.2, 1)
+ambient_light_energy = 0.05
+tonemap_mode = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor_top"]
+size = Vector3(8, 1, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall_side_top"]
+size = Vector3(0.5, 7, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_strip"]
+size = Vector3(0.4, 15, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_shaft_side"]
+size = Vector3(0.3, 22.1, 5.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_shaft_back"]
+size = Vector3(6.8, 22.1, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_shaft_front_mid"]
+size = Vector3(6.8, 5.6, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_shaft_front_sump"]
+size = Vector3(6.8, 2.1, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sump_floor"]
+size = Vector3(6.8, 1, 5.6)
+
+[node name="Tunnel" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_tunnel")
+
+[node name="Stations" type="Node3D" parent="."]
+
+[node name="Station_top" parent="Stations" instance=ExtResource("4_station")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+
+[node name="Station_bottom" parent="Stations" instance=ExtResource("4_station")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, -10, 0)
+
+[node name="Pit" parent="Stations" instance=ExtResource("5_pit")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, -10, 7.5)
+
+[node name="Lift" parent="." instance=ExtResource("6_lift")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.5)
+
+[node name="Collision" type="StaticBody3D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="Floor" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 2.5)
+shape = SubResource("BoxShape3D_floor_top")
+
+[node name="WallL" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6, 3.5, 2.5)
+shape = SubResource("BoxShape3D_wall_side_top")
+
+[node name="WallR" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6, 3.5, 2.5)
+shape = SubResource("BoxShape3D_wall_side_top")
+
+[node name="StripL" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3, -2.5, 4.9)
+shape = SubResource("BoxShape3D_strip")
+
+[node name="StripR" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3, -2.5, 4.9)
+shape = SubResource("BoxShape3D_strip")
+
+[node name="ShaftL" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, -1.05, 7.5)
+shape = SubResource("BoxShape3D_shaft_side")
+
+[node name="ShaftR" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, -1.05, 7.5)
+shape = SubResource("BoxShape3D_shaft_side")
+
+[node name="ShaftBack" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.05, 10.15)
+shape = SubResource("BoxShape3D_shaft_back")
+
+[node name="ShaftFrontMid" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.8, 4.75)
+shape = SubResource("BoxShape3D_shaft_front_mid")
+
+[node name="ShaftFrontSump" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.05, 4.75)
+shape = SubResource("BoxShape3D_shaft_front_sump")
+
+[node name="SumpFloor" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.5, 7.5)
+shape = SubResource("BoxShape3D_sump_floor")
+
+[node name="Floor_B" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.5, 2.5)
+shape = SubResource("BoxShape3D_floor_top")
+
+[node name="WallL_B" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6, -6.5, 2.5)
+shape = SubResource("BoxShape3D_wall_side_top")
+
+[node name="WallR_B" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6, -6.5, 2.5)
+shape = SubResource("BoxShape3D_wall_side_top")
+
+[node name="Layers" type="Node3D" parent="."]
+script = ExtResource("8_assembler")
+
+[node name="Pockets" type="Node3D" parent="."]
+script = ExtResource("7_pockets")
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -1.5)

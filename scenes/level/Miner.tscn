@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/MinerBody.gd" id="1_body"]
+[ext_resource type="PackedScene" path="res://assets/generated/monster/miner_rigged.glb" id="2_glb"]
+
+[node name="Miner" type="Node3D"]
+script = ExtResource("1_body")
+
+[node name="miner_rigged" parent="." instance=ExtResource("2_glb")]

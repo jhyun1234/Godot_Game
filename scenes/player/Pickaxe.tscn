@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/Pickaxe.gd" id="1_pick"]
+[ext_resource type="PackedScene" path="res://assets/generated/tunnel/pick.gltf" id="2_mesh"]
+
+[node name="Pickaxe" type="Node3D"]
+script = ExtResource("1_pick")
+
+[node name="Mesh" parent="." instance=ExtResource("2_mesh")]

@@ -1,0 +1,29 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Export presets may contain local paths and signing keys
+export_presets.cfg
+
+# Generated from source translation files
+*.translation
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build output
+build/
+/builds
+/exports
+
+# Local tooling
+addons/ziva_agent/
+
+# QC golden images (large, backed up separately)
+tools/qc_golden/
+
+# Secrets (never commit)
+tools/miner/hf_token.txt
+*token*.txt
+.env
