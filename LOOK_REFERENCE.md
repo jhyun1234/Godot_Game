@@ -1,3 +1,5 @@
+> **낡음 — Unity판 기준은 `Tunnel/unity/docs/ART_BIBLE.md`**
+
 # LOOK_REFERENCE — 목표 룩과 현재 렌더링 값
 
 Unity로 옮길 때 첫날 정해야 하는 HDRP / URP 판단용 자료 모음.
